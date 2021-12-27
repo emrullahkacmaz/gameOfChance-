@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react'
+import { View, Text, Button } from 'react-native'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class MyComponent extends Component {
+  constructor(props) {
+    super(props) ;
+    this.state={
+
+      sayilar: "",
+    };
+  }
+
+  btnclick=() => {
+    var s="";
+    for(var i=1; i<=6; i++){
+      var tahmin= Math.floor(Math.random()*49);
+     
+      if(i==6){
+      s+=tahmin.toString();
+      
+      }
+      else{
+
+        s+=tahmin.toString()+ " ,";
+      }
+    }
+    this.setState({
+      sayilar: s
+    });
+  }
+  render() {
+
+    return (
+      <View style={{justifyContent:"space-between",margin:5},{flexDirection:"row"}}>
+        <Button 
+         title='oluştur' onPress={this.btnclick}></Button>
+        <Text style={{fontSize:50}} >sayilar: {this.state.sayilar} </Text>
+      </View>);
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
